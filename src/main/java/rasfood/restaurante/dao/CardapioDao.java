@@ -5,10 +5,7 @@ import javax.persistence.EntityManager;
 import rasfood.restaurante.entity.Cardapio;
 
 public class CardapioDao {
-	public static void main(String[] args) {
-
-	}
-
+	
 	private EntityManager em;
 
 	public CardapioDao(EntityManager em) {
