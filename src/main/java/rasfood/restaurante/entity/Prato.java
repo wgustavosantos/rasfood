@@ -27,8 +27,8 @@ public class Prato {
 	private LocalDateTime dataRegistro;
 	
 	public Prato() {
-
 	}
+
 	public Prato(Long id, String nome, String descricao, boolean disponivel, BigDecimal valor,
 			LocalDateTime dataRegistro) {
 		super();
