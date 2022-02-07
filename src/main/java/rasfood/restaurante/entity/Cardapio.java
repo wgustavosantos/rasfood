@@ -12,8 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pratos")
-public class Prato {
+@Table(name = "cardapio")
+public class Cardapio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +22,15 @@ public class Prato {
 	private String descricao;
 	private boolean disponivel;
 	private BigDecimal valor;
+	private Categoria categoria;
 	
 	@Column(name = "data_de_registro")
 	private LocalDateTime dataRegistro;
 	
-	public Prato() {
+	public Cardapio() {
 	}
 
-	public Prato(Long id, String nome, String descricao, boolean disponivel, BigDecimal valor,
+	public Cardapio(Long id, String nome, String descricao, boolean disponivel, BigDecimal valor,
 			LocalDateTime dataRegistro) {
 		super();
 		this.id = id;
@@ -77,7 +78,7 @@ public class Prato {
 	}
 	@Override
 	public String toString() {
-		return "Prato [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", disponivel=" + disponivel
+		return "Cardapio [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", disponivel=" + disponivel
 				+ ", valor=" + valor + ", dataRegistro=" + dataRegistro + "]";
 	}
 	
