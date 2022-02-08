@@ -32,16 +32,18 @@ public class Cardapio {
 	public Cardapio() {
 	}
 
-	public Cardapio(Long id, String nome, String descricao, boolean disponivel, BigDecimal valor,
+	public Cardapio(String nome, String descricao, boolean disponivel, BigDecimal valor, Categoria categoria,
 			LocalDateTime dataRegistro) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.disponivel = disponivel;
 		this.valor = valor;
+		this.categoria = categoria;
 		this.dataRegistro = dataRegistro;
 	}
+
+
 	public Long getId() {
 		return id;
 	}

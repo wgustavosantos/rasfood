@@ -26,7 +26,7 @@ public class CardapioDao {
 		return em.createQuery(jpql, Cardapio.class).getResultList();
 	}
 
-	public Cardapio consultar(final Long id) {
+	public Cardapio consultarPorId(final Long id) {
 		return em.find(Cardapio.class, id);
 	}
 	
