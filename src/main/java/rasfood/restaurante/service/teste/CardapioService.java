@@ -19,12 +19,24 @@ public class CardapioService {
 		CargaDeDadosUtil.cadastrarProdutosCardapio(em);
 
 		CardapioDao cardapioDao = new CardapioDao(em);
-
+		//consultando todos
 		cardapioDao.consultarTodos().forEach(elemento -> System.out
 				.println("O prato consultado foi: " + elemento.getNome() + " Id: " + elemento.getId()));
+		//consultado por id
 		lerInformacoes(cardapioDao.consultarPorId(5L));
+		//consultando por preço
+		cardapioDao.consultarPorValor(BigDecimal.valueOf(25L))
+		.forEach( e -> 
+		System.out.printf("O prato consultado foi: %s\nPreço: R$%.2f\nTipo: %s",e.getNome(), e.getValor(), e.getCategoria().getNome()));
+		//consulta por nome
+		Cardapio cardapio = cardapioDao.consultaPorNome("CHevRe");
+		if(cardapio != null) {
+			System.out.printf("O prato consultado por nome foi: %s Id: %d", cardapio.getNome(),cardapio.getId());
+		}else {
+			System.out.println("Cardapio não encontrado");
+		}
 		
-		cardapioDao.consultarPorValor(BigDecimal.valueOf(25L)).forEach( e -> System.out.printf("O prato consultado foi: %s\nR$Preço: %.2f\nTipo: %s",e.getNome(), e.getValor(), e.getCategoria()));
+		
 	}
 	
 
