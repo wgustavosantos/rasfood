@@ -1,5 +1,7 @@
 package rasfood.restaurante.service.teste;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 
 import rasfood.restaurante.dao.CardapioDao;
@@ -17,13 +19,14 @@ public class CardapioService {
 		CargaDeDadosUtil.cadastrarProdutosCardapio(em);
 
 		CardapioDao cardapioDao = new CardapioDao(em);
-		
-		//lerInformacoes(cardapioDao.);
-		
-		cardapioDao.consultarTodos()
-		.forEach(elemento->System.out.println("O prato consultado foi: " + elemento.getNome() + " Id: " + elemento.getId()));
 
+		cardapioDao.consultarTodos().forEach(elemento -> System.out
+				.println("O prato consultado foi: " + elemento.getNome() + " Id: " + elemento.getId()));
+		lerInformacoes(cardapioDao.consultarPorId(5L));
+		
+		cardapioDao.consultarPorValor(BigDecimal.valueOf(25L)).forEach( e -> System.out.printf("O prato consultado foi: %s\nR$Preço: %.2f\nTipo: %s",e.getNome(), e.getValor(), e.getCategoria()));
 	}
+	
 
 	public static void lerInformacoes(Cardapio cardapio) {
 		System.out.println("Nome do prato: " + cardapio.getNome());

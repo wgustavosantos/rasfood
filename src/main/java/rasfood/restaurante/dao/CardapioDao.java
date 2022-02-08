@@ -1,5 +1,6 @@
 package rasfood.restaurante.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,14 @@ public class CardapioDao {
 
 	public Cardapio consultarPorId(final Long id) {
 		return em.find(Cardapio.class, id);
+	}
+	
+	public List<Cardapio> consultarPorValor(BigDecimal filtroValor){
+		
+		String jqpl = "SELECT c FROM Cardapio c WHERE c.valor = :valor";
+		
+		return em.createQuery(jqpl, Cardapio.class).setParameter("valor", filtroValor).getResultList();
+		
 	}
 	
 	public Cardapio atualizar(final Cardapio cardapio) {
