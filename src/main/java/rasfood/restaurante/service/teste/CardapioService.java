@@ -51,7 +51,6 @@ public class CardapioService {
 		risoto.setCategoria(categoria);
 		cardapioDao.cadastrar(risoto);
 		
-		//adicionando
 		Cardapio salmao = new Cardapio();
 		salmao.setNome("Salmao grelhado ao molho de maracujá");
 		salmao.setDescricao("Salmao grelhado ao molho de maracuja");
@@ -62,7 +61,11 @@ public class CardapioService {
 		cardapioDao.cadastrar(salmao);
 		
 		//consultado
-		lerInformacoes(em.find(Cardapio.class, 2L));
+		
+		//lerInformacoes(em.find(Cardapio.class, 2L));
+		
+		//consultando todos
+		cardapioDao.consultarTodos().forEach(elemento->System.out.println("O prato consultado foi: " + elemento.getNome()));
 		
 		em.getTransaction().commit();
 		em.close();
