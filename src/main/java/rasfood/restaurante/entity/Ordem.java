@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -33,8 +31,13 @@ public class Ordem {
 	@ManyToOne
 	private Cliente cliente;
 	
-	@ManyToMany
-	private Set<Cardapio> cardapios = new HashSet<>();
+	@ManyToMany(mappedBy = "ordem")
+	private Set<OrdensCardapio> ordemCardapios = new HashSet<>();
+	
+	public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
+		ordensCardapio.setOrdem(this);
+		this.ordemCardapios.add(ordensCardapio);
+	}
 
 	public Ordem() {
 	}
