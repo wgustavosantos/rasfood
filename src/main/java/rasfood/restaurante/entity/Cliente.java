@@ -10,9 +10,9 @@ import javax.persistence.Table;
 @Table(name = "clientes")
 public class Cliente {
 
-	private Long id;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String cpf;
 	private String nome;
 	private String cep;

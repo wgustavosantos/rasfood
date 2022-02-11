@@ -2,12 +2,15 @@ package rasfood.restaurante.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,6 +31,9 @@ public class Cardapio {
 	
 	@Column(name = "data_de_registro")
 	private LocalDateTime dataRegistro;
+	
+	@ManyToMany(mappedBy = "cardapios")
+	private Set<Ordem> ordens = new HashSet<>();
 	
 	public Cardapio() {
 	}
