@@ -32,9 +32,6 @@ public class Cardapio {
 	@Column(name = "data_de_registro")
 	private LocalDateTime dataRegistro;
 	
-	@ManyToMany(mappedBy = "cardapios")
-	private Set<Ordem> ordens = new HashSet<>();
-	
 	public Cardapio() {
 	}
 
