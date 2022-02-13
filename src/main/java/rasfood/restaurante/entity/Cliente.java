@@ -17,8 +17,7 @@ public class Cliente {
 	private String nome;
 	private String cep;
 
-	public Cliente(Long id, String cpf, String nome, String cep) {
-		this.id = id;
+	public Cliente(String cpf, String nome, String cep) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.cep = cep;

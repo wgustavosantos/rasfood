@@ -1,18 +1,15 @@
 package rasfood.restaurante.service.teste;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 
 import rasfood.restaurante.dao.CardapioDao;
-import rasfood.restaurante.dao.ClienteDao;
-import rasfood.restaurante.dao.OrdemDao;
 import rasfood.restaurante.entity.Cardapio;
-import rasfood.restaurante.entity.Cliente;
-import rasfood.restaurante.entity.Ordem;
-import rasfood.restaurante.entity.OrdensCardapio;
 import rasfood.restaurante.util.CargaDeDadosUtil;
 import rasfood.restaurante.util.JpaUtil;
 
-public class CardapioService {
+public class OrdemService {
 
 	public static void main(String[] args) {
 		EntityManager em = JpaUtil.getEmf();
@@ -20,23 +17,26 @@ public class CardapioService {
 
 		CargaDeDadosUtil.cadastarCategorias(em);
 		CargaDeDadosUtil.cadastrarProdutosCardapio(em);
-		
-		CardapioDao cardapioDao = new CardapioDao(em);
-		ClienteDao clienteDao = new ClienteDao(em);
-		OrdemDao ordemDao = new OrdemDao(em);
-		
-		Cliente cliente1 = new Cliente("04407090243", "Gustavo", "68600-000");
-		Ordem ordem = new Ordem(cliente1);
-		
-		ordem.addOrdensCardapio(new OrdensCardapio(ordem, cardapioDao.consultarPorId(1L), 2));
-		clienteDao.cadastrar(cliente1);
-		ordemDao.cadastrar(ordem);
-		
-		em.getTransaction().commit();
-		JpaUtil.close();
-		em.close();
 
-			
+		CardapioDao cardapioDao = new CardapioDao(em);
+		//consultando todos
+		cardapioDao.consultarTodos().forEach(elemento -> System.out
+				.println("O prato consultado foi: " + elemento.getNome() + " Id: " + elemento.getId()));
+		//consultado por id
+		lerInformacoes(cardapioDao.consultarPorId(5L));
+		//consultando por preço
+		cardapioDao.consultarPorValor(BigDecimal.valueOf(25L))
+		.forEach( e -> 
+		System.out.printf("O prato consultado foi: %s\nPreço: R$%.2f\nTipo: %s",e.getNome(), e.getValor(), e.getCategoria().getNome()));
+		//consulta por nome
+		Cardapio cardapio = cardapioDao.consultaPorNome("CHevRe");
+		if(cardapio != null) {
+			System.out.printf("O prato consultado por nome foi: %s Id: %d", cardapio.getNome(),cardapio.getId());
+		}else {
+			System.out.println("Cardapio não encontrado");
+		}
+		
+		
 	}
 	
 

@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,12 +31,21 @@ public class Ordem {
 	@ManyToOne
 	private Cliente cliente;
 	
-	@ManyToMany(mappedBy = "ordem")
-	private Set<OrdensCardapio> ordemCardapios = new HashSet<>();
+	@OneToMany(mappedBy = "ordem")
+	private Set<OrdensCardapio> ordensCardapios = new HashSet<>();
 	
 	public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
 		ordensCardapio.setOrdem(this);
-		this.ordemCardapios.add(ordensCardapio);
+		this.ordensCardapios.add(ordensCardapio);
+	}
+	
+
+	public Ordem(BigDecimal valorTotal, LocalDateTime dataDeCriacao, Cliente cliente,
+			Set<OrdensCardapio> ordensCardapios) {
+		this.valorTotal = valorTotal;
+		this.dataDeCriacao = dataDeCriacao;
+		this.cliente = cliente;
+		this.ordensCardapios = ordensCardapios;
 	}
 
 	public Ordem() {
