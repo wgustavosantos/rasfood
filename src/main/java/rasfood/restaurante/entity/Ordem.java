@@ -24,7 +24,7 @@ public class Ordem {
 	private Long id;
 
 	@Column(name = "valor_total")
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
 
 	@Column(name = "data_de_criacao")
 	private LocalDateTime dataDeCriacao = LocalDateTime.now();
@@ -38,6 +38,8 @@ public class Ordem {
 	public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
 		ordensCardapio.setOrdem(this);
 		this.ordensCardapios.add(ordensCardapio);
+		this.valorTotal = valorTotal.add(ordensCardapio.getValorDeRegistro()
+				.multiply(BigDecimal.valueOf(ordensCardapio.getQuantidade())));
 	}
 	
 

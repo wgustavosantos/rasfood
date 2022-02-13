@@ -35,7 +35,7 @@ public class OrdensCardapio {
 	public OrdensCardapio(Cardapio cardapio, Integer quantidade) {
 		this.cardapio = cardapio;
 		this.quantidade = quantidade;
-		this.valor = cardapio.getValor();
+		this.valorDeRegistro = cardapio.getValor();
 	}
 
 	public Ordem getOrdem() {
@@ -69,6 +69,8 @@ public class OrdensCardapio {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	
 
 	@Override
 	public String toString() {
