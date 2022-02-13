@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Ordem {
 	@ManyToOne
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "ordem")
+	@OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
 	private Set<OrdensCardapio> ordensCardapios = new HashSet<>();
 	
 	public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
@@ -87,6 +88,16 @@ public class Ordem {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public Set<OrdensCardapio> getOrdensCardapios() {
+		return ordensCardapios;
+	}
+
+
+	public void setOrdensCardapios(Set<OrdensCardapio> ordensCardapios) {
+		this.ordensCardapios = ordensCardapios;
+	}
+
 
 	@Override
 	public String toString() {

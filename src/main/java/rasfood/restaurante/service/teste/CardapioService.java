@@ -28,10 +28,14 @@ public class CardapioService {
 		Cliente cliente1 = new Cliente("04407090243", "Gustavo", "68600-000");
 		Ordem ordem = new Ordem(cliente1);
 		
-		ordem.addOrdensCardapio(new OrdensCardapio(ordem, cardapioDao.consultarPorId(1L), 2));
+		ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(1L), 2));
+		//ordem.addOrdensCardapio(new OrdensCardapio(ordem, cardapioDao.consultarPorId(1L), 2));
+		
 		clienteDao.cadastrar(cliente1);
 		ordemDao.cadastrar(ordem);
 		
+		System.out.println(ordem.getOrdensCardapios());
+				
 		em.getTransaction().commit();
 		JpaUtil.close();
 		em.close();
