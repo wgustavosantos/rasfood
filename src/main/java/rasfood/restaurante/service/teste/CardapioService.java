@@ -7,6 +7,7 @@ import rasfood.restaurante.dao.ClienteDao;
 import rasfood.restaurante.dao.OrdemDao;
 import rasfood.restaurante.entity.Cardapio;
 import rasfood.restaurante.entity.Cliente;
+import rasfood.restaurante.entity.Endereco;
 import rasfood.restaurante.entity.Ordem;
 import rasfood.restaurante.entity.OrdensCardapio;
 import rasfood.restaurante.util.CargaDeDadosUtil;
@@ -25,7 +26,12 @@ public class CardapioService {
 		ClienteDao clienteDao = new ClienteDao(em);
 		OrdemDao ordemDao = new OrdemDao(em);
 		
-		Cliente cliente1 = new Cliente("04407090243", "Gustavo", "68600-000");
+		
+		
+		Cliente cliente1 = new Cliente("04407090243", "Gustavo");
+		Endereco endereco = new Endereco("68600-000", "General Gurjao", "N1486", "Bragança", "PA");
+		
+		cliente1.getEnderecos().add(endereco);
 		Ordem ordem = new Ordem(cliente1);
 		
 		ordem.addOrdensCardapio(new OrdensCardapio(cardapioDao.consultarPorId(1L), 2));

@@ -102,7 +102,11 @@ public class Ordem {
 	@Override
 	public String toString() {
 		return "Ordem [id=" + id + ", valorTotal=" + valorTotal + ", dataDeCriacao=" + dataDeCriacao + ", cliente="
-				+ cliente + "]";
+				+ cliente + ", ordensCardapios=" + ordensCardapios + "]";
 	}
+
+
+
+
 
 }

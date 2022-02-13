@@ -1,9 +1,14 @@
 package rasfood.restaurante.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,12 +20,13 @@ public class Cliente {
 	private Long id;
 	private String cpf;
 	private String nome;
-	private String cep;
+	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
 
-	public Cliente(String cpf, String nome, String cep) {
+	public Cliente(String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
-		this.cep = cep;
 	}
 
 	public Cliente() {
@@ -51,17 +57,18 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getCep() {
-		return cep;
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Clientes [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", cep=" + cep + "]";
+		return "Cliente [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", enderecos=" + enderecos + "]";
 	}
 
 }

@@ -2,6 +2,7 @@ package rasfood.restaurante.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,8 @@ public class OrdensCardapio {
 	@ManyToOne
 	private Cardapio cardapio;
 
-	private BigDecimal valor;
+	@Column(name = "valor_de_registros")
+	private BigDecimal valorDeRegistro;
 
 	private Integer quantidade;
 
@@ -52,12 +54,12 @@ public class OrdensCardapio {
 		this.cardapio = cardapio;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorDeRegistro() {
+		return valorDeRegistro;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValorDeRegistro(BigDecimal valorDeRegistro) {
+		this.valorDeRegistro = valorDeRegistro;
 	}
 
 	public Integer getQuantidade() {
@@ -70,7 +72,7 @@ public class OrdensCardapio {
 
 	@Override
 	public String toString() {
-		return "OrdensCardapio [id=" + id + ", ordem=" + ordem + ", cardapio=" + cardapio + ", valor=" + valor
+		return "OrdensCardapio [id=" + id + ", cardapio=" + cardapio + ", valorDeRegistro=" + valorDeRegistro
 				+ ", quantidade=" + quantidade + "]";
 	}
 
